@@ -1,0 +1,94 @@
+body{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(158, 160, 163, 0.5);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #eee;
+}
+
+.container-fluid, .container {
+    margin: 10px auto;
+}
+
+.form-control{
+    border-radius: 20px;
+}
+
+
+.navbar-nav a {
+    font-size: 16px;
+    border-radius: 25px;
+    margin: 10px 3px 3px;
+    padding-top: 5px!important;
+    padding-bottom: 5px!important;
+}
+
+.navbar-nav>.active>a{
+    color: white!important;
+    font-weight: bold;
+    background-color: #2ecc71!important;
+}
+
+.navbar-nav>.active>a:hover{
+    background-color: #30b55a!important;
+}
+
+.navbar-form button:hover {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.navbar-default {
+    background-color: #eee;
+    border-color: #c3c3c3;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.thumbs {
+    height: 81vh;
+}
+
+.list-group-item {
+    font-size: 18px;
+}
+
+.list-group-item.active {
+    background-color: #BDBDBD;
+    border-color: #BDBDBD;
+}
+
+.list-group-item.active:hover {
+    background-color: #BDBDBD;
+    border-color: #BDBDBD;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+#playedSong {
+    position: relative;
+    left: 20px;
+    top: 40px;
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+#playedSong:hover {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
