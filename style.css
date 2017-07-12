@@ -92,3 +92,103 @@ body{
 #playedSong:hover {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+
+#img-wrapper{
+    /*position: absolute;*/
+    /*background-image: url('sample-img.jpg');*/
+    /*background-position: center;*/
+    width:80px;
+    height:80px;
+    margin:10px 10px 10px 20px;
+    /*z-index: 100000;*/
+}
+
+.title{
+    /*margin-top:10px;*/
+    display: inline-block;
+    position: relative;
+    top:15px;
+}
+.title>.song-name{
+    /*padding-top:10px;*/
+    font-size:25px;
+    color:white;
+    font-weight: bold;
+}
+.title>.album-name{
+    font-size:15px;
+    color:black;
+}
+.default-bar{
+    margin-left:100px;
+    width:800px;
+    height: 2px;
+    background-color: #212121;
+    display: inline-block;
+}
+.progress-bar{
+    display: inline-block;
+    height:2px;
+    width:10px;
+    background-color: white;
+}
+#circle-pointer{
+    display: inline-block;
+    position: absolute;
+    z-index: 10000;
+    top:44px;
+    height:15px;
+    width:15px;
+    background-color: white;
+    /*border: 2px solid white;*/
+    border-radius: 50%;
+}
+.volume-control{
+    /*height:40px;*/
+    position: relative;
+    top:18px;
+    margin-left:4vw;
+    font-size: 40px;
+    /*max-resolution: 1px;0px 10px 10px 10px;*/
+}
+
+#buttons{
+    display: inline-block;
+    height:100px;
+    width:250px;
+    margin-left:2vw;
+    /*border-left:2px solid #00796b;*/
+    /*border-right:2px solid black;*/
+    box-shadow: 0 1px 0 1px rgba(19,84,122,0.5) ;
+}
+#play,#prev,#next,#pause{
+    height:100px;
+    font-size:30px;
+    border: 0;
+    outline: 0;
+    color:white;
+    background-color: transparent;
+    width: 80px;
+}
+
+
+#play:active,#prev:active,#next:active,#pause:active{
+    color:black;
+}
+
+#shuloop{
+    /*display: inline-block;*/
+    position: absolute;
+    right:30px;
+    height:100px;
+    width:140px;
+    /*border:1px solid black;*/
+}
+#rep,#ran{
+    height:100px;
+    width: 60px;
+    font-size:28px;
+    background-color: transparent;
+    border:none;
+    outline: 0;
+}
