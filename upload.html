@@ -4,14 +4,11 @@
     <meta charset="utf-8">
     <title>Music Player</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="upload.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
 </head>
 <body >
-    <audio id='audio'>
-        <source src='divine.mp3'>
-    </audio>
     <!-- NAVBAR BEGIN -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -21,12 +18,12 @@
             </div>
 
             <!-- NAVBAR OPTIONS -->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Favorites</a></li>
                 <li><a href="#">Queue</a></li>
                 <li><a href="#">Library</a></li>
-                <li><a href="#">Upload</a></li>
+                <li class="active"><a href="#">Upload</a></li>
             </ul>
             <!-- NAVBAR SEARCH BAR -->
             <form action="#" method="get" class="navbar-form">
@@ -53,10 +50,16 @@
                 <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item</a>
                 <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Second item</a>
                 <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
+                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item</a>
+                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Second item</a>
+                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
             </div>
         </div>
-        <div class="col-lg-10 thumbs" style="background-color: #fff; overflow-y: scroll;">
-            <img src="Divide_cover.png" id="playedSong">
+        <div class="col-lg-10 thumbs" style="background-image: url('sky-footer.jpg'); background-size: cover;">
+            <div id="dropBox">
+                <img src="cloud-upload.png" id="cloud">
+                <h3>Drag Your mp3 To Upload</h3>
+            </div>
         </div>
     </div>
 
@@ -71,28 +74,19 @@
                 jab harry met sejal
             </div>
         </div>
-        <div id='defBar' class="default-bar" style="cursor:pointer">
-            <!-- <div id='time' style='display:none'>
-            </div> -->
-            <div id='progBar' class="progress-bar">
+        <div class="default-bar">
+            <div class="progress-bar">
 
             </div>
             <div id="circle-pointer">
 
             </div>
         </div>
-        <div class="volume_container" style="width:100px;height:200px;background-color:gray;">
-            <div id='defVol' class="progress">
-                  <div id='volProg' class="progress-bar prog2" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 10px;">
-                  </div>
-            </div>
-        </div>
-        <span id='mute' class="volume-control glyphicon glyphicon-volume-up" onclick="muteOrUnmute()" ></span>
-        <span id='unmute' class="volume-control glyphicon glyphicon-volume-off" style="display:none" onclick="muteOrUnmute()"></span>
+        <span class="volume-control glyphicon glyphicon-volume-up"></span>
         <span id='buttons' class="btn-group" role='group' aria-label="">
             <button id="prev" class="glyphicon glyphicon-step-backward"></button>
-            <button id="play" class="glyphicon glyphicon-play" onclick="playOrPause()"></button>
-            <button id="pause" class="glyphicon glyphicon-pause" onclick="playOrPause()" style="display:none;"></button>
+            <button id="play" class="glyphicon glyphicon-play"></button>
+            <button id="pause" class="glyphicon glyphicon-pause" style="display:none;"></button>
             <button id="next" class="glyphicon glyphicon-step-forward"></button>
         </span>
 
@@ -102,10 +96,9 @@
         </span>
     </nav>
     <!-- FOOTER ENDS -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src='player.js'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
 
 </body>
 </html>
