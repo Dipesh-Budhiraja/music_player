@@ -1,0 +1,23 @@
+{
+  "name": "music_player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dropzone.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pratyush1687/music_player.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pratyush1687/music_player/issues"
+  },
+  "homepage": "https://github.com/pratyush1687/music_player#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>Music Player</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="upload.css">
+    <link rel="stylesheet" href="/css/upload.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
+    <link href='dropzone.css' rel="stylesheet">
 </head>
 <body >
     <!-- NAVBAR BEGIN -->
@@ -55,8 +56,8 @@
                 <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
             </div>
         </div>
-        <div class="col-lg-10 thumbs" style="background-image: url('sky-footer.jpg'); background-size: cover;">
-            <div id="dropBox">
+        <div class="col-lg-10 thumbs" >
+            <form action='https://google.com' id="dropBox" class='dropzone'>
                 <img src="cloud-upload.png" id="cloud">
                 <h3>Drag Your mp3 To Upload</h3>
             </div>
