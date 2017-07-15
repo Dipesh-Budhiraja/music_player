@@ -4,7 +4,7 @@ var pauseButton=document.getElementById("pause");
 var muteButton=document.getElementById('mute');
 var unmuteButton=document.getElementById('unmute');
 var barSize=800;
-var defBar=document.getElementById('defBar');
+var defBar=document.getElementById('mainbar');
 var progBar=document.getElementById('progBar');
 var time=document.getElementById('time');
 var defVol=document.getElementById('defVol');
@@ -44,16 +44,21 @@ function playOrPause() {
         updateTime=setInterval(update,500);
     }
 }
-
+var w;
 function muteOrUnmute() {
     if (myTrack.muted==true) {
         myTrack.muted=false;
         muteButton.style.display='inline-block';
         unmuteButton.style.display='none';
+        volProg.style.width=w;
+
     } else {
         myTrack.muted=true;
         muteButton.style.display='none';
         unmuteButton.style.display='inline-block';
+        w=volProg.style.width;
+        volProg.style.width=0+'px';
+
     }
 
 }
