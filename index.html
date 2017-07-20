@@ -22,11 +22,11 @@
 
             <!-- NAVBAR OPTIONS -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Favorites</a></li>
-                <li><a href="#">Queue</a></li>
-                <li><a href="#">Library</a></li>
-                <li><a href="#">Upload</a></li>
+                <li id="homeNav"><a href="home.html">Home</a></li>
+                <li id="favoritesNav"><a href="#">Favorites</a></li>
+                <!-- <li id="queueNav"><a href="#">Queue</a></li> -->
+                <li id="libraryNav"><a href="#">Library</a></li>
+                <li id="uploadNav"><a href="#">Upload</a></li>
             </ul>
             <!-- NAVBAR SEARCH BAR -->
             <form action="#" method="get" class="navbar-form">
@@ -55,7 +55,7 @@
                 <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
             </div>
         </div>
-        <div class="col-lg-10 thumbs" style="background-color: #fff; overflow-y: scroll;">
+        <div id='showMe' class="col-lg-10 thumbs" style="background-color: #fff; overflow-y: scroll;">
             <img src="Divide_cover.png" id="playedSong">
         </div>
     </div>
