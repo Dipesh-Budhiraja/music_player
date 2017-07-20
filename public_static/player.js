@@ -109,3 +109,7 @@ function changeVol(e) {
     // console.log(myTrack.volume);
     volProg.style.width=moY+'px';
 }
+// 
+// module.exports = {
+//     playOrPause
+// };
