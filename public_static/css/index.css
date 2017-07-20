@@ -208,12 +208,13 @@ body{
     /*display: none;*/
     position: absolute;
     /*transform: rotate(0%);*/
-    z-index:100000000000000;
+    z-index:10000;
     top:-170px;
     left:190px;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 5px;
     display:none;
-
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.25), 0 0px 5px rgba(0,0,0,0.22);
 }
 .progress {
     transform: rotate(-90deg);
@@ -221,12 +222,26 @@ body{
     height: 3px;
     /*display: inline-block;*/
     position: relative;
-    z-index: 1000000;
+    z-index: 10000;
     top:100px;
-    left: -60px;
+    left: -61px;
+    background-color: #E0E0E0;
 
     /* height: 100px; */
 }
+
+#circle-pointer2 {
+    display: inline-block;
+    position: absolute;
+    z-index: 10000000;
+    top:15px;
+    height:15px;
+    width:15px;
+    background-color: green;
+    /*border: 2px solid white;*/
+    border-radius: 50%;
+}
+
 .prog2{
     height:20px;
     width:148px;
@@ -239,6 +254,7 @@ body{
 #mute:hover,#unmute:hover .volume_container{
     display: inline-block;
 }
+
 /*//music player do not touch*/
 
 /*favourites page css*/

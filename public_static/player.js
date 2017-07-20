@@ -103,7 +103,7 @@ function changeVol(e) {
     // console.log(e.pageY);
     var space = window.innerHeight - defVol.offsetTop + defVol.offsetHeight;
     // console.log(space);
-    var moY=space-e.pageY-10;
+    var moY=space-e.pageY + 6;
     // console.log(moY);
     myTrack.volume=moY/150;
     // console.log(myTrack.volume);
