@@ -20,7 +20,7 @@ $(function() {
     })
 
     $("#favoritesNav").click(function(){
-        console.log('homeNav');
+        // console.log('homeNav');
         showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Favorites <i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i></h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
         $('#favDisp').append('<div class="col-lg-3 holder"><div class="main"><img src="Divide_cover.png" height="100%" width="100%;">           <div class="blackFrame"></div>                <div class="songName">                    SONGNAME                </div>                <div class="playButton">                    <i class="fa fa-play-circle-o " aria-hidden="true"></i></div><div class="text">Artist:<br>Genre:</div><div class="options"><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart-o" aria-hidden="true" style="display: none;"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul" aria-hidden="true" style="position: relative; left: 200px;"></i></a></div></div><h3>Song Name</h3></div>')
         // showme.html('')
@@ -50,7 +50,11 @@ function playSong(song_id){
         $('.song-name').html(data.name);
         $('.album-name').html(data.artist);
         aud_src.attr('src',data.location);
-        playOrPause();
+        // playOrPause();myTrack.play();
         audio[0].load();
+        audio[0].play();
+        playButton.style.display='none';
+        pauseButton.style.display='inline-block';
+        updateTime=setInterval(update,500);
     })
 }
