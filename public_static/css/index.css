@@ -207,10 +207,10 @@ body{
 .volume_container{
     /*display: none;*/
     position: absolute;
-    transform: rotate(-90%);
+    /*transform: rotate(0%);*/
     z-index:100000000000000;
-    top:-180px;
-    left:160px;
+    top:-170px;
+    left:190px;
     border-radius: 10px 10px 10px 10px;
     display:none;
 
@@ -218,18 +218,19 @@ body{
 .progress {
     transform: rotate(-90deg);
     width: 150px;
-    height: 8px;
+    height: 3px;
     /*display: inline-block;*/
     position: relative;
     z-index: 1000000;
     top:100px;
-    left: -25px;
+    left: -60px;
+
     /* height: 100px; */
 }
 .prog2{
     height:20px;
     width:148px;
-    background-color: #2ecc71;
+    background-color: black;
 }
 #time{
     position: absolute;
