@@ -25,6 +25,7 @@ defBar.addEventListener('click',changeTime,false);
 
 document.addEventListener('keydown',function(){
     if(event.which==32){
+        event.preventDefault();
         playOrPause();
     }
 });
@@ -75,12 +76,17 @@ function update(){
         playButton.style.display='inline-block';
         progBar.style.width=0+'px';
         window.clearInterval(updateTime);
+        // var temp_id=queue.splice(0,1);
+        // playSong
+        playNext();
+        // currentlyPlaying++;
+        // playSong(queue[currentlyPlaying]);
     }
 }
 
 function changeTime(e){
     if (!myTrack.ended) {
-        var moX=e.pageX-defBar.offsetLeft;
+        var moX=e.pageX-defBar.offsetLeft-8;
         var newtime=moX*myTrack.duration/barSize;
         myTrack.currentTime=newtime;
         progBar.style.width=moX+'px';
@@ -109,7 +115,7 @@ function changeVol(e) {
     // console.log(myTrack.volume);
     volProg.style.width=moY+'px';
 }
-// 
+//
 // module.exports = {
 //     playOrPause
 // };

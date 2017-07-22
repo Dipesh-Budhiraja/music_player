@@ -40,19 +40,10 @@
     <!-- NAVBAR ENDS -->
     <div class="container-fluid" style="padding: 70px 0 100px 0; margin: 0px;">
         <div class="col-lg-2 thumbs" style="background-color: #eee; overflow-y: scroll; padding: 13px 0;">
-            <div class="list-group">
-                <a href="#" class="list-group-item active"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Second item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Second item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Second item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Second item</a>
-                <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a>
+            <div id='queueView' class="list-group">
+                the queue is empty
+                <!-- <a href="#" class="list-group-item active"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a> -->
+                <!-- <a href="#" class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">Third item</a> -->
             </div>
         </div>
         <div id='showMe' class="col-lg-10 thumbs" style="background-color: #fff; overflow-y: scroll;">
@@ -84,10 +75,10 @@
             </div>
         </div>
         <span id='buttons' class="btn-group" role='group' aria-label="">
-            <button id="prev" class="glyphicon glyphicon-step-backward"></button>
+            <button id="prev" class="glyphicon glyphicon-step-backward" onclick='playPrev()'></button>
             <button id="play" class="glyphicon glyphicon-play" onclick="playOrPause()"></button>
             <button id="pause" class="glyphicon glyphicon-pause" onclick="playOrPause()" style="display:none;"></button>
-            <button id="next" class="glyphicon glyphicon-step-forward"></button>
+            <button id="next" class="glyphicon glyphicon-step-forward" onclick="playNext()"></button>
         </span>
 
         <span id="shuloop">
