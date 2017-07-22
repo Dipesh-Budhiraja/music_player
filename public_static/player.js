@@ -25,6 +25,7 @@ defBar.addEventListener('click',changeTime,false);
 
 document.addEventListener('keydown',function(){
     if(event.which==32){
+        event.preventDefault();
         playOrPause();
     }
 });
@@ -75,6 +76,11 @@ function update(){
         playButton.style.display='inline-block';
         progBar.style.width=0+'px';
         window.clearInterval(updateTime);
+        // var temp_id=queue.splice(0,1);
+        // playSong
+        playNext();
+        // currentlyPlaying++;
+        // playSong(queue[currentlyPlaying]);
     }
 }
 
