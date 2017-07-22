@@ -427,3 +427,12 @@ body{
 	100% { -webkit-transform: translate(4px, -8px) rotate(-1deg); }
 }
 /*upload css*/
+
+
+.listLogo:hover {
+    color: #d7d7d7;
+}
+
+.heartLogo:hover {
+    color: #d7d7d7;
+}
