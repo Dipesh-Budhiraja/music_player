@@ -21,6 +21,7 @@ $(function() {
 
 
     // var Quitem=generateQueue();
+
     $("#searchQuery").focus(function(){
         $(this).css("width", "400px");
         $(this).css("transition", "0.3s");
@@ -68,6 +69,7 @@ $(function() {
             }
         })
     });
+    $('#libraryNav').click();
 });
 
 function playSongButton(id) {
@@ -117,6 +119,8 @@ function playSong(song_id){
             updateTime=setInterval(update,200);
             $('.list-group-item').removeClass("active");
             $('#q'+currId).addClass("active");
+            $('.playingicon').hide()
+            $('#q'+currId+' i').show();
         })
     }
 }
@@ -126,7 +130,7 @@ function addtoqueue(song_id) {
     }
     if(queue.indexOf(song_id)==-1){
         queue.push(song_id);
-        console.log(queue);
+        // console.log(queue);
         generateQueue();
     }
     else {
@@ -142,14 +146,17 @@ function generateQueue(){
         $.post('/songs/data',{"song_id":queue[i]},function(data){
             // data.push(recvData);
             if(data.song_id==currId){
-                queueView.append('<a id="q'+data.song_id+'" href="#" class="list-group-item active"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
+                queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item active"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
             }
-            else
-                queueView.append('<a id="q'+data.song_id+'" href="#" class="list-group-item"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
+            else{
+                queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
+
+            }
+            $('.playingicon').hide()
+            $('#q'+currId+' i').show();
         })
     }
     // return data;
-
 }
 function playPrev(){
     if(currentlyPlaying>0){
