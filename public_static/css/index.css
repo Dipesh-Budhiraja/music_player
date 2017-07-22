@@ -74,9 +74,23 @@ body{
     border-color: #BDBDBD;
 }
 
+.list-group-item.active:focus {
+    background-color: #BDBDBD;
+    border-color: #BDBDBD;
+}
+
 .list-group-item:first-child {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.list-group-item:last-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 #playedSong {
@@ -435,4 +449,19 @@ body{
 
 .heartLogo:hover {
     color: #d7d7d7;
+}
+
+#clearQueue {
+    text-align: center;
+    margin: 10px 0 14px 0;
+}
+
+#clearButton {
+    border-radius: 18px;
+    border: none;
+    background-color: #2ecc71;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px 12px;
 }
