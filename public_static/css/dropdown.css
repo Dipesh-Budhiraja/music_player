@@ -58,6 +58,7 @@ body{
 
 .thumbs {
     height: 81vh;
+    /*overflow-x: visible!important; */
 }
 
 .list-group-item {
@@ -427,3 +428,17 @@ body{
 	100% { -webkit-transform: translate(4px, -8px) rotate(-1deg); }
 }
 /*upload css*/
+
+.dropdown button {
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown button:hover{
+    background-color: transparent;
+}
+
+.dropdown button:focus{
+    background-color: transparent;
+}

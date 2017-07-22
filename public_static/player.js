@@ -86,7 +86,7 @@ function update(){
 
 function changeTime(e){
     if (!myTrack.ended) {
-        var moX=e.pageX-defBar.offsetLeft-8;
+        var moX=e.pageX-defBar.offsetLeft -8;
         var newtime=moX*myTrack.duration/barSize;
         myTrack.currentTime=newtime;
         progBar.style.width=moX+'px';
@@ -109,7 +109,7 @@ function changeVol(e) {
     // console.log(e.pageY);
     var space = window.innerHeight - defVol.offsetTop + defVol.offsetHeight;
     // console.log(space);
-    var moY=space-e.pageY-10;
+    var moY=space-e.pageY + 6;
     // console.log(moY);
     myTrack.volume=moY/150;
     // console.log(myTrack.volume);
