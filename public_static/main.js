@@ -8,16 +8,16 @@ var queueView=$('#queueView');
 var currId=0;
 $(function() {
     //load library at first
-    showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Library</h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
-    $.post('/songs/library',function(data){
-        console.log(data);
-        for(var i in data){
-            console.log(data[i].img_src);
-            $('#favDisp').append('<div class="col-lg-3 holder"><div class="main"><img src="'+data[i].img_src+'" alt="img not found" onerror=this.src="Divide_cover.png" height="100%" width="100%;">           <div class="blackFrame"></div>                <div class="songName">'+data[i].name+'</div>                <div class="playButton">                    <i class="fa fa-play-circle-o " id='+data[i].song_id+' aria-hidden="true" onclick="playSongButton(id)"></i></div><div class="text">Artist: '+data[i].artist+'<br>Genre:'+data[i].genre+'</div><div class="options"><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart-o" aria-hidden="true" style="display: none;"></i></a><a style="text-decoration: none; color: '+(parseInt(data[i].fav)>0?'#e91e63':'white')+';" href="#"><i class="fa fa-heart heartLogo" '+
-            'onclick=toggleFavourite('+data[i].song_id+',this)'
-            +' data-toggle="tooltip" title="Add to Favorites" aria-hidden="true"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul listLogo" data-toggle="tooltip" title="Add to Playlist" aria-hidden="true" style="position: relative; left: 200px;" onclick=addtoqueue('+data[i].song_id+')></i></a></div></div><h3>Song Name</h3></div>')
-        }
-    });
+    // showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Library</h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
+    // $.post('/songs/library',function(data){
+    //     console.log(data);
+    //     for(var i in data){
+    //         console.log(data[i].img_src);
+    //         $('#favDisp').append('<div class="col-lg-3 holder"><div class="main"><img src="'+data[i].img_src+'" alt="img not found" onerror=this.src="Divide_cover.png" height="100%" width="100%;">           <div class="blackFrame"></div>                <div class="songName">'+data[i].name+'</div>                <div class="playButton">                    <i class="fa fa-play-circle-o " id='+data[i].song_id+' aria-hidden="true" onclick="playSongButton(id)"></i></div><div class="text">Artist: '+data[i].artist+'<br>Genre:'+data[i].genre+'</div><div class="options"><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart-o" aria-hidden="true" style="display: none;"></i></a><a style="text-decoration: none; color: '+(parseInt(data[i].fav)>0?'#e91e63':'white')+';" href="#"><i class="fa fa-heart heartLogo" '+
+    //         'onclick=toggleFavourite('+data[i].song_id+',this)'
+    //         +' data-toggle="tooltip" title="Add to Favorites" aria-hidden="true"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul listLogo" data-toggle="tooltip" title="Add to Playlist" aria-hidden="true" style="position: relative; left: 200px;" onclick=addtoqueue('+data[i].song_id+')></i></a></div></div><h3>Song Name</h3></div>')
+    //     }
+    // });
 
 
     // var Quitem=generateQueue();
@@ -54,10 +54,12 @@ $(function() {
         })
     });
     $('#uploadNav').click(function(){
-        console.log('uploadNav');
-        showme.html('<div id="dropBox">        <img src="cloud-upload.png" id="cloud">            <h3>Drag Your mp3 To Upload</h3></div>');
+        // console.log('uploadNav');
+        // showme.html('<div id="dropBox">        <img src="cloud-upload.png" id="cloud">            <h3>Drag Your mp3 To Upload</h3></div>');
+        showme.html('<form ref="uploadForm" id="uploadForm" action="http://localhost:5000/upload" method="post" encType="multipart/form-data" class="dropzone" name="file"></form>')
     })
     $('#libraryNav').click(function(){
+        showme.html('');
         showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Library</h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
         $.post('/songs/library',function(data){
             console.log(data);

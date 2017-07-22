@@ -33,6 +33,17 @@ app.post('/songs/data',function(req,res){
         res.send(data[0]);
     })
 })
+
+app.post('/upload', function(req, res) {
+    if (!req.files)
+        return res.status(400).send('No files were uploaded.');
+
+    let textfile = req.files.file;
+    //  console.log(textfile);
+    // the uploaded file object
+    textfile.mv('./music/'+textfile.name);
+    res.send("File Uploaded");
+});
 app.listen(port,function(){
     console.log("listening on"+port);
 });
