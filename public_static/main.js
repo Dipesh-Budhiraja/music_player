@@ -8,6 +8,7 @@ var queueView=$('#queueView');
 var currId=0;
 $(function() {
     // var Quitem=generateQueue();
+    
     $("#searchQuery").focus(function(){
         $(this).css("width", "400px");
         $(this).css("transition", "0.3s");
