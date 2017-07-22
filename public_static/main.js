@@ -57,6 +57,11 @@ $(function() {
         })
     });
     $('#libraryNav').click();
+
+    $('#clearButton').click(function(){
+        queue = [];
+        queueView.html('');
+    });
 });
 
 function playSongButton(id) {
@@ -128,7 +133,7 @@ function addtoqueue(song_id) {
 }
 function generateQueue(){
     // var data=[];
-    queueView.html('')
+    queueView.html('');
     for(var i in queue){
         $.post('/songs/data',{"song_id":queue[i]},function(data){
             // data.push(recvData);

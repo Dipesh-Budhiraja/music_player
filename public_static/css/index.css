@@ -450,3 +450,18 @@ body{
 .heartLogo:hover {
     color: #d7d7d7;
 }
+
+#clearQueue {
+    text-align: center;
+    margin: 10px 0 14px 0;
+}
+
+#clearButton {
+    border-radius: 18px;
+    border: none;
+    background-color: #2ecc71;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px 12px;
+}
