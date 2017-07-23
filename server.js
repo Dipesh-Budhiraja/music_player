@@ -38,7 +38,7 @@ app.post('/upload', function(req, res) {
     if (!req.files)
         return res.status(400).send('No files were uploaded.');
 
-    let textfile = req.files.file;
+    let textfile = req.files.foo;
     //  console.log(textfile);
     // the uploaded file object
     textfile.mv('./music/'+textfile.name);
