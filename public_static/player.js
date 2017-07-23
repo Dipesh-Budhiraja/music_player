@@ -78,7 +78,8 @@ function update(){
         window.clearInterval(updateTime);
         // var temp_id=queue.splice(0,1);
         // playSong
-        playNext();
+        if(currentlyPlaying!=queue.length-1)
+            playNext();
         // currentlyPlaying++;
         // playSong(queue[currentlyPlaying]);
     }
