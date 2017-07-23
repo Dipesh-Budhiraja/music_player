@@ -1,12 +1,14 @@
 const express = require('express');
 const app=express();
 const sql = require('./sql.js');
+const fileUpload=require('express-fileupload');
 const bodyParser=require('body-parser');
 const port=5000||process.env.port;
 app.use('/',bodyParser.json());
 app.use('/',bodyParser.urlencoded({extended:true}));
 
 app.use('/',express.static('public_static'));
+app.use(fileUpload());
 // app.get('/',function(req,res){
 //     res.redirect(x.html);
 // });
@@ -35,14 +37,20 @@ app.post('/songs/data',function(req,res){
 })
 
 app.post('/upload', function(req, res) {
+    // console.log("blhblaqkdksxz");
     if (!req.files)
         return res.status(400).send('No files were uploaded.');
 
-    let textfile = req.files.foo;
+    let textfile = req.files.file;
     //  console.log(textfile);
     // the uploaded file object
-    textfile.mv('./music/'+textfile.name);
-    res.send("File Uploaded");
+    if(textfile.name.split('.')[1]=='mp3'){
+        textfile.mv('./public_static/music/'+textfile.name);
+        res.send("File Uploaded");
+    }
+    else{
+        res.status(400).send('please upload mp3 file');
+    }
 });
 app.listen(port,function(){
     console.log("listening on"+port);
