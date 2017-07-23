@@ -61,7 +61,7 @@ $(function() {
     });
     $('#libraryNav').click();
 
-    $('#clearButton').click(function(){
+    $('#finalClear').click(function(){
         queue = [];
         queueView.html('');
         if (!audio[0].paused){
@@ -75,6 +75,8 @@ $(function() {
         // playSong();
         audio[0].load();
     });
+
+
 });
 
 function playSongButton(id) {
@@ -102,6 +104,19 @@ function toggleFavourite(id,e){
         }
         else{
             e.style.color='white';
+            showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Favorites <i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i></h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
+            $.post('/songs/library',function(data){
+                console.log(data);
+                for(var i in data){
+                    console.log(data[i].img_src);
+                    if(parseInt(data[i].fav)>0){
+                        $('#favDisp').append('<div class="col-lg-3 holder"><div class="main"><img src="'+data[i].img_src+'" alt="img not found" onerror=this.src="Divide_cover.png" height="100%" width="100%;">           <div class="blackFrame"></div>                <div class="songName">'+data[i].name+'</div>                <div class="playButton">                    <i class="fa fa-play-circle-o " id='+data[i].song_id+' aria-hidden="true" onclick="playSong(id)"></i></div><div class="text">Artist: '+data[i].artist+'<br>Genre:'+data[i].genre+'</div><div class="options"><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart-o" aria-hidden="true" style="display: none;"></i></a><a style="text-decoration: none; color: '+(parseInt(data[i].fav)>0?'#e91e63':'white')+';" href="#"><i class="fa fa-heart" '+
+                    'onclick=toggleFavourite('+data[i].song_id+',this)'
+                    +' aria-hidden="true"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul" aria-hidden="true" style="position: relative; left: 200px;" onclick=addtoqueue('+data[i].song_id+')></i></a></div></div><h3>Song Name</h3></div>')
+
+                        }
+                }// showme.html('')
+            });
         }
     })
 }
