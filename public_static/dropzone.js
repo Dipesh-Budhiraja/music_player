@@ -576,7 +576,7 @@
         this.element.setAttribute("enctype", "multipart/form-data");
       }
       if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
-        this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
+        this.element.appendChild(Dropzone.createElement('<div class="dz-default dz-message" style="font-family: \'Indie Flower\', sans-serif;"><span><h1 style="font-weight:light;margin-top:50px;">' + this.options.dictDefaultMessage + '</h1></span><br><br><img id="cloud" src="cloud-upload.png" width="250px"></div>'));
       }
       if (this.clickableElements.length) {
         setupHiddenFileInput = (function(_this) {

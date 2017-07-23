@@ -490,3 +490,15 @@ hr.style17:after {
 	color: #8c8b8b;
 	font-size: 18px;
 }
+
+#cloudContainer{
+    width: 750px;
+    height: 590px;
+    position: absolute;
+    top: 0px;
+    border: 0px;
+    right: 0px;
+    left: 0px;
+    margin: 0 auto;
+    margin-top: 5%;
+}

@@ -44,7 +44,7 @@ $(function() {
     $('#uploadNav').click(function(){
         // console.log('uploadNav');
         // showme.html('<div id="dropBox">        <img src="cloud-upload.png" id="cloud">            <h3>Drag Your mp3 To Upload</h3></div>');
-        showme.html('<iframe style="border:none;" width=100% height=80% src="upload.html"></iframe>')
+        showme.html('<div id="cloudContainer"><iframe style="border:none;" width=100% height=80% src="upload.html"></iframe></div>')
         // $.getScript('dropzone.js');
     })
     $('#libraryNav').click(function(){
