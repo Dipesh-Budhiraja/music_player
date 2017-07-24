@@ -41,6 +41,16 @@ app.post('/songs/data',function(req,res){
         res.send(data[0]);
     })
 })
+app.get('/songs/search',function (req,res) {
+    var query1="SELECT * FROM songs WHERE name='"+req.query.q+"'";
+    sql.sqlQuery(query1,function (data) {
+        var query2="SELECT * FROM songs WHERE artist='"+req.query.q+"'";
+        sql.sqlQuery(query2,function (data2) {
+            console.log(data.concat(data2));
+            res.send(data.concat(data2));
+        })
+    })
+})
 
 app.post('/upload', function(req, res) {
     // console.log("blhblaqkdksxz");

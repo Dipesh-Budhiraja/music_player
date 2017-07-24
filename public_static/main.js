@@ -8,7 +8,7 @@ if(queue==undefined||queue==null){
     localStorage.setItem('queue',JSON.stringify(queue));
 }
 else{
-    console.log(queue);
+    // console.log(queue);
     queue=JSON.parse(queue);
 }
 
@@ -25,7 +25,6 @@ $(function() {
         $(this).css("transition", "0.3s");
 
     });
-
     $("#searchQuery").focusout(function(){
         $(this).css("width", "280px");
         });
@@ -197,7 +196,7 @@ function addtoqueue(song_id) {
 function generateQueue(){
     // var data=[];
     if(queue.length==0){
-        queueView.html('queue is empty')
+        // queueView.html('queue is empty')
     }
     else
         queueView.html('');
@@ -359,3 +358,26 @@ function addToPlaylist(song_id,playlist_index){
     })
 }
 // addToPlaylist(12,1);
+
+function search() {
+    var query=$('#searchQuery').val();
+    if (query=='') {
+        alert('please enter a valid search query');
+        return;
+    }
+    showme.html('');
+    showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Search Results</h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
+    $.get('/songs/search?q='+query,function (data) {
+        // console.log(data);
+        for(var i in data){
+            // console.log(data[i].img_src);
+            $('#favDisp').append('<div class="col-lg-3 holder"><div class="main"><img src="'+data[i].img_src+'" alt="img not found" onerror=this.src="Divide_cover.png" height="100%" width="100%;">           <div class="blackFrame"></div>                <div class="songName">'+data[i].name+'</div>                <div class="playButton">                    <i class="fa fa-play-circle-o " id='+data[i].song_id+' aria-hidden="true" onclick="playSongButton(id)"></i></div><div class="text">Artist: '+data[i].artist+'<br>Genre:'+data[i].genre+'</div><div class="options"><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart-o" aria-hidden="true" style="display: none;"></i></a><a style="text-decoration: none; color: '+(parseInt(data[i].fav)>0?'#e91e63':'white')+';" href="#"><i class="fa fa-heart heartLogo" '+
+            'onclick=toggleFavourite('+data[i].song_id+',this)'
+            +' data-toggle="tooltip" title="Add to Favorites" aria-hidden="true"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-plus-circle" data-toggle="tooltip" title="Add to Playlist" aria-hidden="true" style="position: relative; left: 92px;"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul listLogo" data-toggle="tooltip" title="Add to Queue" aria-hidden="true" style="position: relative; left: 185px;" onclick=addtoqueue('+data[i].song_id+')></i></a></div></div><h3>Song Name</h3></div>')
+        }
+        if(data.length==0){
+            console.log(true);
+            showme.html('//todo search not found');
+        }
+    })
+}
