@@ -9,6 +9,7 @@ var progBar=document.getElementById('progBar');
 var time=document.getElementById('time');
 var defVol=document.getElementById('defVol');
 var volProg=document.getElementById('volProg');
+var searchQ=document.getElementById('searchQuery');
 defVol.addEventListener('click',changeVol,false);
 document.getElementsByClassName('thumbs')[1].onclick=function(){
     document.getElementsByClassName('volume_container')[0].style.display='none';
@@ -24,7 +25,8 @@ defBar.addEventListener('click',changeTime,false);
 // defBar.addEventListener('mouseover',showTime,false);
 
 document.addEventListener('keydown',function(){
-    if(event.which==32){
+    if(event.which==32&&document.activeElement!=searchQ){
+        // console.log();
         event.preventDefault();
         playOrPause();
     }

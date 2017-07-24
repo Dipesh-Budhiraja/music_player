@@ -54,7 +54,7 @@
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
                           <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>
-                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i> <button type="button" name="button" class="call_modal">Add to Playlist</button></a></li>
+                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i> <button type="button" name="button" class="call_modal" onclick="viewModal()" >Add to Playlist</button></a></li>
                           <li class="divider"></li>
                           <li><a href="#">Info, Artist, and more...</a></li>
                         </ul>
@@ -114,10 +114,10 @@
         </div>
     </div>
     <!-- MODAL TRY -->
-    <div class="mymodal"></div>
-    <div class="mymodal_bg close"></div>
-    <div class="mymodal_main"></div>
-    
+    <div class="mymodal" style="display:none"></div>
+    <div class="mymodal_bg close" style="display:none" onclick="two()"></div>
+    <div class="mymodal_main" style="display:none"></div>
+
     <!-- FOOTER BEGINS THROUGH NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 100px;  background: linear-gradient(to bottom left, #13547a  0%, #80d0c7 100%);">
         <img id="img-wrapper" src="sample-img.jpg">
@@ -171,17 +171,22 @@
     <script src='player.js'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(function(){
             $('.call_modal').click(function() {
                 $('.mymodal').fadeIn();
-                $('mymodal_main').show();
+                $('mymodal_main').toggle();
             });
 
-            $('.close').click(function() {
+            function two() {
                 $('.mymodal').fadeOut();
-                $('mymodal_main').fadeOut();
-            });
-        })
+                $('.mymodal_bg').fadeOut();
+                $('.mymodal_main').fadeOut();
+                console.log("in two");
+            };
+        function viewModal(){
+            $('.mymodal').fadeIn();
+            $('.mymodal_bg').fadeIn();
+            $('.mymodal_main').toggle();
+        }
     </script>
     <!-- <script type="text/javascript" src="main.js"></script> -->
 

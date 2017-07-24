@@ -8,7 +8,7 @@ if(queue==undefined||queue==null){
     localStorage.setItem('queue',JSON.stringify(queue));
 }
 else{
-    console.log(queue);
+    // console.log(queue);
     queue=JSON.parse(queue);
 }
 
@@ -19,13 +19,12 @@ var loop=false;
 
 $(function() {
     // var Quitem=generateQueue();
-
+    generateQueue();
     $("#searchQuery").focus(function(){
         $(this).css("width", "400px");
         $(this).css("transition", "0.3s");
 
     });
-
     $("#searchQuery").focusout(function(){
         $(this).css("width", "280px");
         });
@@ -197,7 +196,7 @@ function addtoqueue(song_id) {
 function generateQueue(){
     // var data=[];
     if(queue.length==0){
-        queueView.html('queue is empty')
+        // queueView.html('queue is empty')
     }
     else
         queueView.html('');
@@ -252,8 +251,29 @@ function playNext(){
 
 function dispPlaylist(user,id) {
     $.post("/user/playlist",{"user":user},function(data){
-        showme.html('');
-        showme.append('<div class="col-lg-3 col-md-3 col-sm-3 albumHolder"><div class="main">                <img src="Divide_cover.png" height="100%" width="100%;">                <div class="blackFrame">                </div>                <div class="playButton">                    <i data-toggle="tooltip" title="Play Playlist" class="fa fa-play-circle-o " aria-hidden="true"></i>                </div><div class="songName">PLAYLISTNAME</div></div></div><div class="col-lg-7 col-md-7 col-sm-7"><div class="list-group" id="playlist" style="padding: 70px 50px 150px 30px;width: 100%;"></div></div>')
+        $('#favDisp').html('');
+        var array=data.playlists[id].list;
+        $('#favDisp').append('<div class="col-lg-3 col-md-3 col-sm-3 albumHolder"><div class="main"><img src="Divide_cover.png" height="100%" width="100%;">                <div class="blackFrame">                </div>                <div class="playButton" onclick=playPlaylist('+JSON.stringify(data.playlists[id].list)+')>                    <i data-toggle="tooltip" title="Play Playlist" class="fa fa-play-circle-o " aria-hidden="true"></i></div>'+
+        '<div class="songName">'+data.playlists[id].name+'<div></div></div>');
+        $('#favDisp').append('<div class="col-lg-7 col-md-7 col-sm-7">'+
+        '<div class="list-group" id="playlist" style="padding: 70px 50px 150px 30px;width: 100%;">'+
+        '</div></div>')
+        for(var i in array){
+            var it=1;
+            $.post('/songs/data',{"song_id":array[i]},function(recvData){
+                $('#playlist').append('<li href="#" class="list-group-item"><span onclick="playSong('+recvData.song_id+')" style="color: lightgray; margin-right: 20px; margin-left: 15px;">'+(it++)+'</span><div onclick="playSong('+recvData.song_id+')" data-toggle="tooltip" title="play song" style="display: inline-block;"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;"></div><div onclick="playSong('+recvData.song_id+')" style="display: inline-block;position: relative; top: 12px;">'+
+                '<span class="songTitle">'+recvData.name+'</span><br>'+
+                '<span class="art">'+recvData.artist+'</span></div>'+
+                '<div class="dropdown" style="float: right; top: 2px;">'+
+                '<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px"></button>'+
+                '<ul class="dropdown-menu" style="position: absolute; left: -170px;" >'+
+                '<li onclick=toggleFavourite("'+recvData.song_id+'",this)><a ><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
+                '<li onclick="removeFromPlaylist('+recvData.song_id+','+user+','+id+')"><a href="#"><i class="fa fa-trash-o" aria-hidden="true" style="color: #E91E63;"></i> Remove from playlist</a></li>'+
+                '<li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i>Add to Playlist</a></li>'+
+                '<li class="divider"></li>'+
+                '<li><a href="#">Info, Artist, and more...</a></li></ul></div></li>')
+            })
+        }
     });
 }
 
@@ -291,7 +311,7 @@ function newPlayAdd(){
             console.log(data);
             data.playlists.push({"name":name,"list":[0]});
             $.post("/user/update",{"data":data},function(data){
-                console.log(data);
+                // console.log(data);
                 $('#playlistNav').click();
             })
         })
@@ -309,5 +329,55 @@ function removeFromQueue(id,e){
         playSong(undefined);
     }
     // playNext();
+}
+function removeFromPlaylist(song_id,user,id){
+    console.log(song_id+'song_id');
+    $.post('/user/playlist',{"user":user},function (data) {
+        var i=data.playlists[id].list.indexOf(parseInt(song_id));
+        console.log(i);
+        console.log(data.playlists[id].list);
+        if (i!=-1) {
+            data.playlists[id].list.splice(i,1);
+            $.post('/user/update',{"data":data},function(data){
+                dispPlaylist(user,id);
+            })
+        }
+    })
+}
 
+function addToPlaylist(song_id,playlist_index){
+    $.post('/user/playlist',{"user":1},function(data){
+        var list=data.playlists[playlist_index].list
+        if (list.length==1||list[0]==0||list[0]=='0'){
+            data.playlists[playlist_index].list.pop();
+        }
+        data.playlists[playlist_index].list.push(song_id);
+        $.post('/user/update',{"data":data},function (result) {
+            console.log(result);
+        })
+    })
+}
+// addToPlaylist(12,1);
+
+function search() {
+    var query=$('#searchQuery').val();
+    if (query=='') {
+        alert('please enter a valid search query');
+        return;
+    }
+    showme.html('');
+    showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Search Results</h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
+    $.get('/songs/search?q='+query,function (data) {
+        // console.log(data);
+        for(var i in data){
+            // console.log(data[i].img_src);
+            $('#favDisp').append('<div class="col-lg-3 holder"><div class="main"><img src="'+data[i].img_src+'" alt="img not found" onerror=this.src="Divide_cover.png" height="100%" width="100%;">           <div class="blackFrame"></div>                <div class="songName">'+data[i].name+'</div>                <div class="playButton">                    <i class="fa fa-play-circle-o " id='+data[i].song_id+' aria-hidden="true" onclick="playSongButton(id)"></i></div><div class="text">Artist: '+data[i].artist+'<br>Genre:'+data[i].genre+'</div><div class="options"><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart-o" aria-hidden="true" style="display: none;"></i></a><a style="text-decoration: none; color: '+(parseInt(data[i].fav)>0?'#e91e63':'white')+';" href="#"><i class="fa fa-heart heartLogo" '+
+            'onclick=toggleFavourite('+data[i].song_id+',this)'
+            +' data-toggle="tooltip" title="Add to Favorites" aria-hidden="true"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-plus-circle" data-toggle="tooltip" title="Add to Playlist" aria-hidden="true" style="position: relative; left: 92px;"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul listLogo" data-toggle="tooltip" title="Add to Queue" aria-hidden="true" style="position: relative; left: 185px;" onclick=addtoqueue('+data[i].song_id+')></i></a></div></div><h3>Song Name</h3></div>')
+        }
+        if(data.length==0){
+            console.log(true);
+            showme.html('//todo search not found');
+        }
+    })
 }

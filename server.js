@@ -41,6 +41,23 @@ app.post('/songs/data',function(req,res){
         res.send(data[0]);
     })
 })
+app.get('/songs/search',function (req,res) {
+    var query1="SELECT * FROM songs WHERE name='"+convert_case(req.query.q)+"'";
+    sql.sqlQuery(query1,function (data) {
+        var query2="SELECT * FROM songs WHERE artist='"+convert_case(req.query.q)+"'";
+        sql.sqlQuery(query2,function (data2) {
+            // console.log(data.concat(data2));
+            res.send(data.concat(data2));
+        })
+    })
+})
+
+function convert_case(str) {
+  var lower = str.toLowerCase();
+  return lower.replace(/(^| )(\w)/g, function(x) {
+    return x.toUpperCase();
+  });
+}
 
 app.post('/upload', function(req, res) {
     // console.log("blhblaqkdksxz");
