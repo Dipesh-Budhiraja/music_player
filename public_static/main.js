@@ -41,6 +41,30 @@ $(function() {
             }// showme.html('')
         })
     });
+    $('#playlistNav').click(function () {
+        showme.html('');
+        showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Playlists</h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
+        $.post('/user/playlist',{"user":"1"},function (data) {
+            $('favDisp').html('');
+            for(var i in data.playlists){
+                $('#favDisp').append('<div id='+data.user+'_'+i+' class="col-lg-3 holder">'+
+                '<div class="main">'+
+                '<img src="Divide_cover.png" height="100%" width="100%;">'+
+                                            '<div class="blackFrame">'+
+                                            +'</div>'+
+                                            '<div class="songName">'+
+                                                data.playlists[i].name
+                                            +'</div>'+
+                                            '<div class="playButton playlist">'+
+                                                '<i data-toggle="tooltip" onclick="playPlaylist('+JSON.stringify(data.playlists[i].list)+')" title="Play Playlist" class="fa fa-play-circle-o fa-2x" aria-hidden="true"></i>'+
+                                            '</div>'+
+                                            '<div class="options">'+
+                                                '<a data-toggle="tooltip" title="Delete Playlist" onclick="deletePlaylist('+data.user+','+i+')" style="text-decoration: none; color: white;" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>'+
+                                                '<a data-toggle="tooltip" title="View Playlist" onclick="dispPlaylist('+data.user+','+i+')" style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul" aria-hidden="true" style="position: relative; left: 200px;"></i></a>'+
+                                            '</div></div></div>')
+            }
+        })
+    })
     $('#uploadNav').click(function(){
         // console.log('uploadNav');
         // showme.html('<div id="dropBox">        <img src="cloud-upload.png" id="cloud">            <h3>Drag Your mp3 To Upload</h3></div>');
@@ -105,19 +129,6 @@ function toggleFavourite(id,e){
         }
         else{
             e.style.color='white';
-            showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Favorites <i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i></h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
-            $.post('/songs/library',function(data){
-                console.log(data);
-                for(var i in data){
-                    console.log(data[i].img_src);
-                    if(parseInt(data[i].fav)>0){
-                        $('#favDisp').append('<div class="col-lg-3 holder"><div class="main"><img src="'+data[i].img_src+'" alt="img not found" onerror=this.src="Divide_cover.png" height="100%" width="100%;">           <div class="blackFrame"></div>                <div class="songName">'+data[i].name+'</div>                <div class="playButton">                    <i class="fa fa-play-circle-o " id='+data[i].song_id+' aria-hidden="true" onclick="playSong(id)"></i></div><div class="text">Artist: '+data[i].artist+'<br>Genre:'+data[i].genre+'</div><div class="options"><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-heart-o" aria-hidden="true" style="display: none;"></i></a><a style="text-decoration: none; color: '+(parseInt(data[i].fav)>0?'#e91e63':'white')+';" href="#"><i class="fa fa-heart" '+
-                    'onclick=toggleFavourite('+data[i].song_id+',this)'
-                    +' aria-hidden="true"></i></a><a style="text-decoration: none; color: white;" href="#"><i class="fa fa-list-ul" aria-hidden="true" style="position: relative; left: 200px;" onclick=addtoqueue('+data[i].song_id+')></i></a></div></div><h3>Song Name</h3></div>')
-
-                        }
-                }// showme.html('')
-            });
         }
     })
 }
@@ -192,4 +203,30 @@ function playNext(){
         currentlyPlaying++;
         playSong(queue[currentlyPlaying]);
     }
+}
+
+function dispPlaylist(user,id) {
+    $.post("/user/playlist",{"user":user},function(data){
+        console.log(data.playlists[parseInt(id)]);
+    });
+}
+
+function playPlaylist(id) {
+    queue=id;
+    currentlyPlaying=0;
+    currId=queue[0];
+    generateQueue();
+    playSong(queue[0]);
+
+}
+
+
+function deletePlaylist(user,id) {
+    $.post("/user/playlist",{"user":user},function(data){
+        data.playlists.splice(id,1);
+        $.post("/user/update",{"data":data},function(data) {
+            $('#'+user+'_'+id).hide();
+            // console.log('#'+user+'*'+id);
+        })
+    })
 }
