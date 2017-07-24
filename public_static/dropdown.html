@@ -5,7 +5,7 @@
     <title>: Music Player</title>
     <link rel="shortcut icon" href="spotify.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
 </head>
@@ -40,7 +40,7 @@
     </nav>
     <!-- NAVBAR ENDS -->
     <div class="container-fluid" style="padding: 70px 0 100px 0; margin: 0px; ">
-        <div class="col-lg-2 thumbs" style="background-color: #eee; overflow-y: scroll; padding: 9px 0; overflow-x: visible!important; box-shadow: inset 0 0 23px rgba(0,0,0,0.5)"><!--important-->
+        <div class="col-lg-2 thumbs" style="background-color: #eee; overflow-y: scroll; padding: 9px 0; box-shadow: inset 0 0 23px rgba(0,0,0,0.5)"><!--important-->
             <div id="clearQueue">
                 <button type="button" name="button" id="clearButton">Clear Queue</button>
             </div>
@@ -50,16 +50,16 @@
                     <div class="dropdown" style="float: right; top: 2px;">
                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px">
                         </button>
-                        <ul class="dropdown-menu" style="position: absolute; left: -170px;" >
+                        <ul class="dropdown-menu" style="position: absolute; left: -170px;">
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
-                          <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
-                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Playlist</a></li>
+                          <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
+                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</a></li>
+                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i> Add to Playlist</a></li>
                           <li class="divider"></li>
                           <li><a href="#">Info, Artist, and more...</a></li>
                         </ul>
                     </div>
                 </li>
-
                 <li class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item
                     <i class="fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>
                     <div class="dropdown" style="float: right; top: 2px;">
@@ -67,8 +67,9 @@
                         </button>
                         <ul class="dropdown-menu" style="position: absolute; left: -170px;">
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
-                          <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #2ecc71;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
-                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Playlist</a></li>
+                          <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
+                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</a></li>
+                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i> Add to Playlist</a></li>
                           <li class="divider"></li>
                           <li><a href="#">Info, Artist, and more...</a></li>
                         </ul>
@@ -164,7 +165,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='player.js'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <!-- <script type="text/javascript" src="main.js"></script> -->
 
 </body>
 </html>
