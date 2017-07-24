@@ -56,7 +56,7 @@ $(function() {
                                                 data.playlists[i].name
                                             +'</div>'+
                                             '<div class="playButton playlist">'+
-                                                '<i data-toggle="tooltip" onclick="playPlaylist('+JSON.stringify(data.playlists[i].list)+')" title="Play Playlist" class="fa fa-play-circle-o fa-2x" aria-hidden="true"></i>'+
+                                                '<i data-toggle="tooltip" onclick="playPlaylist('+JSON.stringify(data.playlists[i].list.map(function(x){return parseInt(x)}))+')" title="Play Playlist" class="fa fa-play-circle-o fa-2x" aria-hidden="true"></i>'+
                                             '</div>'+
                                             '<div class="options">'+
                                                 '<a data-toggle="tooltip" title="Delete Playlist" onclick="deletePlaylist('+data.user+','+i+')" style="text-decoration: none; color: white;" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>'+
@@ -211,8 +211,10 @@ function dispPlaylist(user,id) {
     });
 }
 
-function playPlaylist(id) {
-    queue=id;
+function playPlaylist(list) {
+    queue=list.map(function(x){
+        return parseInt(x);
+    });
     currentlyPlaying=0;
     currId=queue[0];
     generateQueue();
