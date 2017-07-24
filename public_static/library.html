@@ -102,8 +102,42 @@
             <!-- <form ref="uploadForm" id="uploadForm" action="http://localhost:5000/upload"  type="text" class="dropzone" method="post" encType="multipart/form-data" name="file"> -->
 
             <!-- </form> -->
+            <button type="button" data-toggle="modal" data-target="#playlistButtonBox">ye button individual gaane k add to playlist wale button ka kaam kr rha h</button>
+            <div class="modal fade" id="playlistButtonBox" role="dialog" style="text-align: center;"><!-- dont remove this; this is for target-->
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                        <div class="modal-header alert alert-success">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Select Playlist</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Want to Create New Playlist?</h3>
+                            <input style="margin-top: 20px; text-align: center;" type="text" class="form-control" placeholder="Enter the name of New Playlist">
+                            <hr class="forPlaylist">
+                            <h3>Select From Existing One's</h3>
+                            <div class="playlistOptions">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons">
+                                    <label class="btn active">
+                                      <input type="radio" name='gender1' checked><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>  Playlist1</span>
+                                    </label>
+                                    <label class="btn">
+                                      <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> Playlist2</span>
+                                    </label>
+                                    <label class="btn">
+                                      <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> Playlist3</span>
+                                    </label>
+                                 </div>
+                            </div>
 
-                <!-- <button type="submit">submit</button> -->
+                         </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">ADD TO PLAYLIST</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                        </div>
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -159,7 +193,7 @@
     <script type="text/javascript" src='dropzone.js'></script>
     <script src='player.js'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <!-- <script type="text/javascript" src="main.js"></script> -->
 
 </body>
 </html>
