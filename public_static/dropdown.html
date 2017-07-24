@@ -52,14 +52,9 @@
                         </button>
                         <ul class="dropdown-menu" style="position: absolute; left: -170px;">
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
-<<<<<<< HEAD
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
-                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</a></li>
-                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i> Add to Playlist</a></li>
-=======
-                          <li><a href="#"><i class="fa fa-trash-o" aria-hidden="true" style="color: #E91E63;"></i> Remove from queue</a></li>
-                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i>Add to Playlist</a></li>
->>>>>>> 2affd563b0fcc1fb121aa8b97a4b87df51a7ff63
+                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>
+                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i> <button type="button" name="button" class="call_modal">Add to Playlist</button></a></li>
                           <li class="divider"></li>
                           <li><a href="#">Info, Artist, and more...</a></li>
                         </ul>
@@ -118,7 +113,11 @@
             <img src="Divide_cover.png" id="playedSong">
         </div>
     </div>
-
+    <!-- MODAL TRY -->
+    <div class="mymodal"></div>
+    <div class="mymodal_bg close"></div>
+    <div class="mymodal_main"></div>
+    
     <!-- FOOTER BEGINS THROUGH NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 100px;  background: linear-gradient(to bottom left, #13547a  0%, #80d0c7 100%);">
         <img id="img-wrapper" src="sample-img.jpg">
@@ -167,9 +166,23 @@
 
     </nav>
     <!-- FOOTER ENDS -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='player.js'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.call_modal').click(function() {
+                $('.mymodal').fadeIn();
+                $('mymodal_main').show();
+            });
+
+            $('.close').click(function() {
+                $('.mymodal').fadeOut();
+                $('mymodal_main').fadeOut();
+            });
+        })
+    </script>
     <!-- <script type="text/javascript" src="main.js"></script> -->
 
 </body>
