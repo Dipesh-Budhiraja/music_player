@@ -345,3 +345,17 @@ function removeFromPlaylist(song_id,user,id){
         }
     })
 }
+
+function addToPlaylist(song_id,playlist_index){
+    $.post('/user/playlist',{"user":1},function(data){
+        var list=data.playlists[playlist_index].list
+        if (list.length==1||list[0]==0||list[0]=='0'){
+            data.playlists[playlist_index].list.pop();
+        }
+        data.playlists[playlist_index].list.push(song_id);
+        $.post('/user/update',{"data":data},function (result) {
+            console.log(result);
+        })
+    })
+}
+// addToPlaylist(12,1);
