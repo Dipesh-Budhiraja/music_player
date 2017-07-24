@@ -100,8 +100,6 @@ $(function() {
         // playSong();
         audio[0].load();
     });
-
-
 });
 
 function playSongButton(id) {
@@ -207,7 +205,8 @@ function playNext(){
 
 function dispPlaylist(user,id) {
     $.post("/user/playlist",{"user":user},function(data){
-        console.log(data.playlists[parseInt(id)]);
+        showme.html('');
+        showme.append('<div class="col-lg-3 col-md-3 col-sm-3 albumHolder"><div class="main">                <img src="Divide_cover.png" height="100%" width="100%;">                <div class="blackFrame">                </div>                <div class="playButton">                    <i data-toggle="tooltip" title="Play Playlist" class="fa fa-play-circle-o " aria-hidden="true"></i>                </div><div class="songName">PLAYLISTNAME</div></div></div><div class="col-lg-7 col-md-7 col-sm-7"><div class="list-group" id="playlist" style="padding: 70px 50px 150px 30px;width: 100%;"></div></div>')
     });
 }
 
