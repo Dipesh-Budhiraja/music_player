@@ -2,11 +2,21 @@
 var showme=$('#showMe');
 var audio=$('#audio');
 var aud_src=$('#aud_src');
-var queue=[];
+var queue=localStorage.getItem('queue');
+if(queue==undefined||queue==null){
+    queue=[];
+    localStorage.setItem('queue',JSON.stringify(queue));
+}
+else{
+    console.log(queue);
+    queue=JSON.parse(queue);
+}
+
 var currentlyPlaying=0;
 var queueView=$('#queueView');
 var currId=0;
 var loop=false;
+
 $(function() {
     // var Quitem=generateQueue();
 
@@ -43,7 +53,11 @@ $(function() {
     });
     $('#playlistNav').click(function () {
         showme.html('');
-        showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Playlists</h1></div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
+        showme.html('<div class="container-fluid" ><div class="row"><h1 style="text-align: center;">Your Playlists</h1>'+'<button style="float: right; position: relative; top: -45px; background-color: #2ecc71;border-color: transparent;outline: none; border-radius: 18px; font-size: 16px;" type="button" class="btn btn-info" data-toggle="modal" data-target="#addtoPlaylist">Create New Playlist</button>'+
+        '<div class="modal fade" id="addtoPlaylist" role="dialog">'+'<!-- dont remove this; this is for target-->'+'<div class="modal-dialog"><div class="modal-content">                    <div class="modal-header alert alert-success">                      <button type="button" class="close" data-dismiss="modal">&times;</button>                      <h4 class="modal-title">Creating New Playlist</h4>                    </div>                    <div class="modal-body">                      <input id="newPlayIn" type="text" class="form-control" placeholder="Enter the Name of Playlist" style="font-size: 16px;">                    </div>                    <div class="modal-footer">'+
+        '<button type="button" onclick="newPlayAdd()" class="btn btn-default" data-dismiss="modal">SUBMIT</button>'+
+        '<button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>                    </div>              </div>            </div>        </div>'+
+        '</div><div id="favDisp" class="row" style="margin-left: 40px;display: flex; flex-wrap: wrap;"></div></div>');
         $.post('/user/playlist',{"user":"1"},function (data) {
             $('favDisp').html('');
             for(var i in data.playlists){
@@ -88,6 +102,7 @@ $(function() {
 
     $('#finalClear').click(function(){
         queue = [];
+        localStorage.setItem('queue',JSON.stringify(queue));
         queueView.html('');
         if (!audio[0].paused){
             playOrPause();
@@ -103,11 +118,11 @@ $(function() {
 });
 
 function playSongButton(id) {
-    console.log(queue);
-    console.log(id);
-    console.log(queue.indexOf(id));
+    // console.log(queue);
+    // console.log(id);
+    // console.log(queue.indexOf(id));
     if(queue.indexOf(parseInt(id))==-1){
-        console.log("in button if");
+        // console.log("in button if");
         var quetemp=queue.splice(0,queue.length);
         // console.log(quetemp);
         queue.push(parseInt(id));
@@ -115,6 +130,7 @@ function playSongButton(id) {
         queue=queue.concat(quetemp);
         // console.log(queue);
         currentlyPlaying=0;
+        localStorage.setItem("queue",JSON.stringify(queue));
         generateQueue();
     }
     playSong(id);
@@ -131,7 +147,7 @@ function toggleFavourite(id,e){
     })
 }
 function playSong(song_id){
-    console.log(song_id);
+    // console.log(song_id);
     // console.log("playing shit");
     currId=song_id;
     currentlyPlaying=queue.indexOf(parseInt(song_id));
@@ -153,6 +169,14 @@ function playSong(song_id){
             $('#q'+currId+' i').show();
         })
     }
+    else{
+        $('#img-wrapper').attr("src",'');
+        $('.song-name').html('');
+        $('.album-name').html('');
+        aud_src.attr('src',"");
+        // playOrPause();myTrack.play();
+        audio[0].load();
+    }
 }
 function addtoqueue(song_id) {
     if(queue.length==0){
@@ -161,6 +185,7 @@ function addtoqueue(song_id) {
     if(queue.indexOf(song_id)==-1){
         queue.push(song_id);
         // console.log(queue);
+        localStorage.setItem("queue",JSON.stringify(queue));
         generateQueue();
     }
     else {
@@ -171,15 +196,37 @@ function addtoqueue(song_id) {
 }
 function generateQueue(){
     // var data=[];
-    queueView.html('');
+    if(queue.length==0){
+        queueView.html('queue is empty')
+    }
+    else
+        queueView.html('');
     for(var i in queue){
         $.post('/songs/data',{"song_id":queue[i]},function(data){
             // data.push(recvData);
             if(data.song_id==currId){
-                queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item active"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
+                // queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item active"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
+                queueView.append('<li id="q'+data.song_id+'" class="list-group-item active"><img onclick=playSong('+data.song_id+') src="'+data.img_src+'" style="cursor:pointer;width: 40px; display: inline; margin-right: 10px;"><a onclick=playSong('+data.song_id+') style="cursor:pointer;color:inherit">'+data.name+'</a><i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>'+
+                    '<div class="dropdown" style="float: right; top: 2px;">'+
+                    '<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px"></button>'+
+                    '<ul class="dropdown-menu" style="position: absolute; left: -170px;" >'+
+                    '<li><a onclick=toggleFavourite("'+data.song_id+'",this)><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
+                    '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-trash-o" aria-hidden="true" style="color: #E91E63;"></i> Remove from queue</a></li>'+
+                    '<li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i>Add to Playlist</a></li>'+
+                    '<li class="divider"></li>'+
+                    '<li><a href="#">Info, Artist, and more...</a></li></ul></div></li>')
             }
             else{
-                queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
+                queueView.append('<li id="q'+data.song_id+'" class="list-group-item"><img onclick=playSong('+data.song_id+') src="'+data.img_src+'" style="cursor:pointer;width: 40px; display: inline; margin-right: 10px;"><a onclick=playSong('+data.song_id+') style="cursor:pointer;color:inherit">'+data.name+'</a><i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>'+
+                    '<div class="dropdown" style="float: right; top: 2px;">'+
+                    '<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px"></button>'+
+                    '<ul class="dropdown-menu" style="position: absolute; left: -170px;" >'+
+                    '<li><a onclick=toggleFavourite("'+data.song_id+'",this)><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
+                    '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-trash-o" aria-hidden="true" style="color: #E91E63;"></i> Remove from queue</a></li>'+
+                    '<li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i>Add to Playlist</a></li>'+
+                    '<li class="divider"></li>'+
+                    '<li><a href="#">Info, Artist, and more...</a></li></ul></div></li>')
+                // queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
 
             }
             $('.playingicon').hide()
@@ -211,9 +258,11 @@ function dispPlaylist(user,id) {
 }
 
 function playPlaylist(list) {
+    if(list.length==1&&list[0]==0){return;}
     queue=list.map(function(x){
         return parseInt(x);
     });
+    localStorage.setItem("queue",JSON.stringify(queue));
     currentlyPlaying=0;
     currId=queue[0];
     generateQueue();
@@ -230,4 +279,35 @@ function deletePlaylist(user,id) {
             // console.log('#'+user+'*'+id);
         })
     })
+}
+
+function newPlayAdd(){
+    var name=$("#newPlayIn").val();
+    if(name!=''){
+        $.post('/user/playlist',{"user":1},function(data){
+            if(!data.playlists){
+                data.playlists=[];
+            }
+            console.log(data);
+            data.playlists.push({"name":name,"list":[0]});
+            $.post("/user/update",{"data":data},function(data){
+                console.log(data);
+                $('#playlistNav').click();
+            })
+        })
+    }
+}
+function removeFromQueue(id,e){
+    $('#q'+id).hide();
+    // console.log(queue);
+    // console.log("in remove");
+    var index=queue.indexOf(id);
+    queue.splice(index,1);
+    // console.log(queue);
+    localStorage.setItem('queue',JSON.stringify(queue));
+    if(currId==id){
+        playSong(undefined);
+    }
+    // playNext();
+
 }
