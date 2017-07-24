@@ -4,6 +4,8 @@ const sql = require('./sql.js');
 const fileUpload=require('express-fileupload');
 const bodyParser=require('body-parser');
 const port=5000||process.env.port;
+
+const mongodb=require('./mongodb.js');
 app.use('/',bodyParser.json());
 app.use('/',bodyParser.urlencoded({extended:true}));
 
@@ -18,6 +20,8 @@ app.post('/songs/library',function(req,res){
         res.send(data);
     })
 })
+
+
 app.post('/songs/update/toggleFav',function(req,res){
     var query2="SELECT fav FROM songs WHERE song_id="+req.body.song_id;
     // console.log(query);
@@ -29,6 +33,8 @@ app.post('/songs/update/toggleFav',function(req,res){
         res.send(JSON.stringify(fav>0?0:1));
     })
 })
+
+
 app.post('/songs/data',function(req,res){
     var query="SELECT * FROM songs WHERE song_id="+req.body.song_id;
     sql.sqlQuery(query,function (data) {
@@ -52,6 +58,23 @@ app.post('/upload', function(req, res) {
         res.status(400).send('please upload mp3 file');
     }
 });
-app.listen(port,function(){
-    console.log("listening on"+port);
-});
+
+app.post('/user/playlist',function (req,res) {
+    mongodb.getList({'user':req.body.user},function (data) {
+        // console.log(data);
+        res.send(data);
+    })
+})
+
+app.post('/user/update',function (req,res) {
+    mongodb.updateItem({'user':req.body.data.user},{$set:{playlists:req.body.data.playlists}},function (data) {
+        // console.log(data);
+        res.send(data);
+    })
+})
+
+mongodb.connectToMongo(function () {
+    app.listen(port,function(){
+        console.log("listening on"+port);
+    });
+})

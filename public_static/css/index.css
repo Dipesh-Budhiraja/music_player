@@ -502,3 +502,19 @@ hr.style17:after {
     margin: 0 auto;
     margin-top: 5%;
 }
+
+/*playlist a little changed*/
+.playlist {
+    font-size: 70px;
+    text-align: center;
+    height: 50px;
+    width: 290px;
+    background-color: transparent;
+    color: white;
+    position: absolute;
+    top: 30px;
+    left: 290px;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+/**/
