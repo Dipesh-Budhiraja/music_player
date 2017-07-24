@@ -254,7 +254,7 @@ body{
 #circle-pointer2 {
     display: inline-block;
     position: absolute;
-    z-index: 10000000;
+    z-index: 1000;
     top:15px;
     height:15px;
     width:15px;
@@ -270,7 +270,7 @@ body{
 }
 #time{
     position: absolute;
-    z-index: 100000000;
+    z-index: 10000;
 }
 #mute:hover,#unmute:hover .volume_container{
     display: inline-block;
@@ -634,3 +634,33 @@ hr.style17:after {
 .art {
     color: gray;
 }
+
+/*MODAL START*/
+.mymodal
+{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	display:none;
+}
+
+.mymodal_bg {
+    background: rgba(0,0,0,0.7);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.mymodal_main {
+    position: fixed;
+    width: 50%;
+    height: 400px;
+    background: #fff;
+    border-radius: 6px;
+    top: 9%;
+    left: 24%;
+    z-index: 1;
+}
+/*MODAL END*/
