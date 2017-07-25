@@ -105,6 +105,43 @@
 
                 <!-- <button type="submit">submit</button> -->
         </div>
+
+    </div>
+    <i id="playlistToggle"class="fa fa-plus-circle" data-toggle="modal" data-target="#playlistButtonBox"></i>
+    <div class="modal fade" id="playlistButtonBox" role="dialog" style="text-align: center;"><!-- dont remove this; this is for target-->
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+                <div class="modal-header alert alert-success">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Select Playlist</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Want to Create New Playlist?</h3>
+                    <input id="playName" style="margin-top: 20px; text-align: center;" type="text" class="form-control" placeholder="Enter the name of New Playlist">
+                    <hr class="forPlaylist">
+                    <h3>Select From Existing One's</h3>
+                    <div class="playlistOptions">
+                        <div id='list-of-playlist' class="btn-group btn-group-vertical" data-toggle="buttons">
+                            <!-- <label class="btn">
+                              <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>  Playlist1</span>
+                            </label>
+                            <label class="btn">
+                              <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> Playlist2</span>
+                            </label>
+                            <label class="btn">
+                              <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> Playlist3</span>
+                            </label> -->
+                         </div>
+                    </div>
+
+                 </div>
+                <div class="modal-footer">
+                  <button id='tempId' type="button" onclick="sendData(id)" class="btn btn-default" data-dismiss="modal" >ADD TO PLAYLIST</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                </div>
+          </div>
+        </div>
     </div>
 
     <!-- FOOTER BEGINS THROUGH NAVBAR -->
