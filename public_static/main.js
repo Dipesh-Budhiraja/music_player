@@ -154,9 +154,11 @@ function toggleFavourite(id,e){
         else{
             e.style.color='white';
         }
+        // console.log($(e));
         if($('#favoritesNav').hasClass('active')){
             $('#favoritesNav').click();
         }
+        generateQueue();
     })
 }
 function playSong(song_id){
@@ -234,9 +236,10 @@ function generateQueue(){
                 '<button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">'+
                 '<img src="add.png" width="26px">'+'</button>'+
                 '<ul class="dropdown-menu" style="position: absolute; left: -207px;">'+
-                '<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
-                // '<li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>'+
-                '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
+
+                (parseInt(data.fav)<=0?'<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>':'<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>')
+
+                +'<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
                 '<li onclick="addtoPlaylistHelper('+data.song_id+')"><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal">Add to Playlist</button></a></li>'+
                 '<li class="divider"></li>'+
                 '<li><a href="#">Info, Artist, and more...</a></li>'+'</ul></div>'+
@@ -247,9 +250,7 @@ function generateQueue(){
                 '<div class="dropdown" style="float: right; top: 2px;">'+
                 '<button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">'+
                 '<img src="add.png" width="26px">'+'</button>'+
-                '<ul class="dropdown-menu" style="position: absolute; left: -220px;">'+
-                '<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
-                // '<li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>'+
+                '<ul class="dropdown-menu" style="position: absolute; left: -207px;">'+(parseInt(data.fav)<=0?'<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>':'<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>')+
                 '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
                 '<li onclick="addtoPlaylistHelper('+data.song_id+')"s><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal" >Add to Playlist</button></a></li>'+
                 '<li class="divider"></li>'+
@@ -317,7 +318,13 @@ function playPlaylist(list) {
     queue=list.map(function(x){
         return parseInt(x);
     });
+    var uniqueQueue= [];
+    $.each(queue, function(i, el){
+        if($.inArray(el, uniqueQueue) === -1) uniqueQueue.push(el);
+    });
+    queue=uniqueQueue;
     localStorage.setItem("queue",JSON.stringify(queue));
+
     currentlyPlaying=0;
     currId=queue[0];
     generateQueue();
