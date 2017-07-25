@@ -4,7 +4,7 @@ const sql = require('./sql.js');
 const fileUpload=require('express-fileupload');
 const bodyParser=require('body-parser');
 const port=5000||process.env.port;
-
+var uploadID=0;
 const mongodb=require('./mongodb.js');
 app.use('/',bodyParser.json());
 app.use('/',bodyParser.urlencoded({extended:true}));
@@ -67,14 +67,28 @@ app.post('/upload', function(req, res) {
     let textfile = req.files.file;
     //  console.log(textfile);
     // the uploaded file object
-    if(textfile.name.split('.')[1]=='mp3'){
+    if(textfile.name.split('.')[1]=='mp3'&&uploadID!=0){
         textfile.mv('./public_static/music/'+textfile.name);
         res.send("File Uploaded");
+        sql.sqlQuery("UPDATE songs SET location='music/"+textfile.name+"' WHERE song_id="+uploadID,function (data) {
+            console.log(data);
+
+        });
     }
     else{
         res.status(400).send('please upload mp3 file');
     }
 });
+
+app.post('/upload/form',function (req,res) {
+    var query='INSERT INTO songs (name,artist,genre,img_src) values ("'+convert_case(req.body.name)+'","'+convert_case(req.body.artist)+'","'+convert_case(req.body.genre)+'","'+req.body.img_src+'")';
+    sql.sqlQuery(query,function(data){
+        res.send(req.body.name);
+        // console.log(data);
+        uploadID=parseInt(data.insertId);
+        console.log(uploadID);
+    })
+})
 
 app.post('/user/playlist',function (req,res) {
     mongodb.getList({'user':req.body.user},function (data) {

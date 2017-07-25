@@ -78,11 +78,21 @@ $(function() {
             }
         })
     })
-    $('#uploadNav').click(function(){
+    $('#form-upload').click(function(){
         // console.log('uploadNav');
         // showme.html('<div id="dropBox">        <img src="cloud-upload.png" id="cloud">            <h3>Drag Your mp3 To Upload</h3></div>');
-        showme.html('<div id="cloudContainer"><iframe style="border:none;" width=100% height=80% src="upload.html"></iframe></div>')
         // $.getScript('dropzone.js');
+        var songName=$("#nameform").val();
+        var artist=$("#artistform").val();
+        var genre=$("#genreform").val();
+        var img_src=$("#srcform").val();
+        if (songName!=''){
+            $.post('/upload/form',{"name":songName,"artist":artist,"genre":genre,"img_src":img_src},function (data) {
+
+                showme.html('<div id="cloudContainer"><iframe style="border:none;" width=100% height=80% src="upload.html"></iframe></div>')
+
+            })
+        }
     })
     $('#libraryNav').click(function(){
         showme.html('');
@@ -143,6 +153,9 @@ function toggleFavourite(id,e){
         }
         else{
             e.style.color='white';
+        }
+        if($('#favoritesNav').hasClass('active')){
+            $('#favoritesNav').click();
         }
     })
 }
@@ -206,31 +219,46 @@ function generateQueue(){
             // data.push(recvData);
             if(data.song_id==currId){
                 // queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item active"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
-                queueView.append('<li id="q'+data.song_id+'" class="list-group-item active"><img onclick=playSong('+data.song_id+') src="'+data.img_src+'" style="cursor:pointer;width: 40px; display: inline; margin-right: 10px;"><a onclick=playSong('+data.song_id+') style="cursor:pointer;color:inherit">'+data.name+'</a><i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>'+
-                    '<div class="dropdown" style="float: right; top: 2px;">'+
-                    '<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px"></button>'+
-                    '<ul class="dropdown-menu" style="position: absolute; left: -170px;" >'+
-                    '<li><a onclick=toggleFavourite("'+data.song_id+'",this)><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
-                    '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-trash-o" aria-hidden="true" style="color: #E91E63;"></i> Remove from queue</a></li>'+
-                    '<li onclick="addtoPlaylistHelper('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i>Add to Playlist</a></li>'+
-                    '<li class="divider"></li>'+
-                    '<li><a href="#">Info, Artist, and more...</a></li></ul></div></li>')
+                // queueView.append('<li id="q'+data.song_id+'" class="list-group-item active"><img onclick=playSong('+data.song_id+') src="'+data.img_src+'" style="cursor:pointer;width: 40px; display: inline; margin-right: 10px;"><a onclick=playSong('+data.song_id+') style="cursor:pointer;color:inherit">'+data.name+'</a>'+
+                // '<i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>'+
+                //     '<div class="dropdown" style="float: right; top: 2px;">'+
+                //     '<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px"></button>'+
+                //     '<ul class="dropdown-menu" style="position: absolute; left: -170px;" >'+
+                //     '<li><a onclick=toggleFavourite("'+data.song_id+'",this)><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
+                //     '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-trash-o" aria-hidden="true" style="color: #E91E63;"></i> Remove from queue</a></li>'+
+                //     '<li onclick="addtoPlaylistHelper('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i>Add to Playlist</a></li>'+
+                //     '<li class="divider"></li>'+
+                //     '<li><a href="#">Info, Artist, and more...</a></li></ul></div></li>')
+                queueView.append('<li id="q'+data.song_id+'" class="list-group-item active"><img onclick=playSong('+data.song_id+') src="'+data.img_src+'" style="cursor:poniter;width: 40px; display: inline; margin-right: 10px;"><a onclick=playSong('+data.song_id+') style="cursor:pointer;color:inherit">'+data.name+'</a>'+
+                '<div class="dropdown" style="float: right; top: 2px;">'+
+                '<button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">'+
+                '<img src="add.png" width="26px">'+'</button>'+
+                '<ul class="dropdown-menu" style="position: absolute; left: -207px;">'+
+                '<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
+                // '<li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>'+
+                '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
+                '<li onclick="addtoPlaylistHelper('+data.song_id+')"><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal">Add to Playlist</button></a></li>'+
+                '<li class="divider"></li>'+
+                '<li><a href="#">Info, Artist, and more...</a></li>'+'</ul></div>'+
+                '<i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px; left: -10px;"></i></li>')
             }
             else{
-                queueView.append('<li id="q'+data.song_id+'" class="list-group-item"><img onclick=playSong('+data.song_id+') src="'+data.img_src+'" style="cursor:pointer;width: 40px; display: inline; margin-right: 10px;"><a onclick=playSong('+data.song_id+') style="cursor:pointer;color:inherit">'+data.name+'</a><i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>'+
-                    '<div class="dropdown" style="float: right; top: 2px;">'+
-                    '<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px"></button>'+
-                    '<ul class="dropdown-menu" style="position: absolute; left: -170px;" >'+
-                    '<li><a onclick=toggleFavourite("'+data.song_id+'",this)><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
-                    '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-trash-o" aria-hidden="true" style="color: #E91E63;"></i> Remove from queue</a></li>'+
-                    '<li onclick="addtoPlaylistHelper('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i>Add to Playlist</a></li>'+
-                    '<li class="divider"></li>'+
-                    '<li><a href="#">Info, Artist, and more...</a></li></ul></div></li>')
-                // queueView.append('<a id="q'+data.song_id+'" href="#" onclick=playSong('+data.song_id+') class="list-group-item"><img src="'+data.img_src+'" style="width: 40px; display: inline; margin-right: 10px;">'+data.name+'<i class="playingicon fa fa-volume-up" aria-hidden="true" style="font-size: 26px; float: right; position: relative; top: 8px;"></i></a>')
+                queueView.append('<li id="q'+data.song_id+'" class="list-group-item "><img onclick=playSong('+data.song_id+') src="'+data.img_src+'" style="cursor:poniter;width: 40px; display: inline; margin-right: 10px;"><a onclick=playSong('+data.song_id+') style="cursor:pointer;color:inherit">'+data.name+'</a>'+
+                '<div class="dropdown" style="float: right; top: 2px;">'+
+                '<button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">'+
+                '<img src="add.png" width="26px">'+'</button>'+
+                '<ul class="dropdown-menu" style="position: absolute; left: -207px;">'+
+                '<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>'+
+                // '<li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>'+
+                '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
+                '<li onclick="addtoPlaylistHelper('+data.song_id+')"s><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal" >Add to Playlist</button></a></li>'+
+                '<li class="divider"></li>'+
+                '<li><a href="#">Info, Artist, and more...</a></li>'+'</ul></div>'+
+                '<i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px; left: -10px;"></i></li>')
 
             }
             $('.playingicon').hide()
-            $('#q'+currId+' i').show();
+            $('#q'+currId+' .playingicon').show();
         })
     }
     // return data;

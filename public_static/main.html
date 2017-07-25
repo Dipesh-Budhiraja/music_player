@@ -43,6 +43,25 @@
         </div>
     </nav>
     <!-- NAVBAR ENDS -->
+
+        <!-- SEARCH RESULTS -->
+        <!-- <div class="search-results" style="width: 400px; height: 100%; background-color: white; box-shadow: 0 0 12px rgba(0,0,0,0.8); position: fixed; z-index: 100000; top: 71px; left: 115px;">
+            <h3 style="text-align: center;">Your Search Results</h3>
+            <div class="list-group">
+                <li href="#" class="list-group-item"><div style="display: inline-block; margin-left: 20px; position: relative; top: -4px;"><img src="Divide_cover.png" style="width: 60px; display: inline; margin-right: 10px;"></div><div style="display: inline-block;position: relative; top: 12px;"><span class="songTitle">First Item</span><br><span class="art">artist</span></div>
+                    <div class="dropdown" style="float: right; top: 15px;">
+                        <button class="btn btn-default dropdown-toggle playlist-drop" type="button" data-toggle="dropdown" style="outline: none;"><img src="add.png" width="26px">
+                        </button>
+                        <ul class="dropdown-menu" style="position: absolute; left: -200px;" >
+                          <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
+                          <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
+                          <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Playlist</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </div>
+        </div> -->
+        <!-- SEARCH RESULTS ENDS HERE -->
     <div class="modal fade" id="addtoUpload" role="dialog"><!-- dont remove this; this is for target-->
         <div class="modal-dialog">
           <!-- Modal content-->
@@ -52,13 +71,14 @@
                   <h4 class="modal-title">Uploading Song</h4>
                 </div>
                 <div class="modal-body">
-                  <input type="text" class="form-control" placeholder="Song Name..." style="font-size: 16px; margin-top: 20px; margin-bottom: 20px;">
-                  <input type="text" class="form-control" placeholder="Artist..." style="font-size: 16px; margin-top: 20px; margin-bottom: 20px;">
-                  <input type="text" class="form-control" placeholder="Genre..." style="font-size: 16px; margin-top: 20px; margin-bottom: 20px;">
-                  <h4 style="display: inline;">Select Cover Photo: &nbsp;</h4><input style="display: inline;" type="file">
+                  <input type="text" id='nameform' class="form-control" placeholder="Song Name..." style="font-size: 16px; margin-top: 20px; margin-bottom: 20px;">
+                  <input type="text" id='artistform' class="form-control" placeholder="Artist..." style="font-size: 16px; margin-top: 20px; margin-bottom: 20px;">
+                  <input type="text" id='genreform' class="form-control" placeholder="Genre..." style="font-size: 16px; margin-top: 20px; margin-bottom: 20px;">
+                  <input type="text" id='srcform' class="form-control" placeholder="enter source for cover photo" style="font-size: 16px; margin-top: 20px; margin-bottom: 20px;">
+                  <!-- <h4 style="display: inline;">Select Cover Photo: &nbsp;</h4><input style="display: inline;" type="file"> -->
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">UPLOAD</button>
+                  <button id="form-upload" type="button" class="btn btn-default" data-dismiss="modal">UPLOAD</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
                 </div>
           </div>
