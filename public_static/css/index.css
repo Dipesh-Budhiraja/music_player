@@ -775,3 +775,9 @@ box-shadow: none;
     padding-right: 130px;
     outline: none;
 }
+
+
+#playlist .songTitle:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
