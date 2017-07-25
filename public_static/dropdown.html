@@ -14,7 +14,7 @@
         <source id="aud_src" src='divine.mp3'>
     </audio>
     <!-- NAVBAR BEGIN -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" style="z-index: 100000000;">
         <div class="container-fluid">
             <!-- NAVBAR HEADER  -->
             <div class="navbar-header">
@@ -39,6 +39,26 @@
         </div>
     </nav>
     <!-- NAVBAR ENDS -->
+
+    <!-- SEARCH RESULTS -->
+    <div class="search-results" style="width: 400px; height: 100%; background-color: white; box-shadow: 0 0 12px rgba(0,0,0,0.8); position: fixed; z-index: 100000; top: 71px; left: 115px;">
+        <h3 style="text-align: center;">Your Search Results</h3>
+        <div class="list-group">
+            <li href="#" class="list-group-item"><div style="display: inline-block; margin-left: 20px; position: relative; top: -4px;"><img src="Divide_cover.png" style="width: 60px; display: inline; margin-right: 10px;"></div><div style="display: inline-block;position: relative; top: 12px;"><span class="songTitle">First Item</span><br><span class="art">artist</span></div>
+                <div class="dropdown" style="float: right; top: 15px;">
+                    <button class="btn btn-default dropdown-toggle playlist-drop" type="button" data-toggle="dropdown" style="outline: none;"><img src="add.png" width="26px">
+                    </button>
+                    <ul class="dropdown-menu" style="position: absolute; left: -200px;" >
+                      <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
+                      <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
+                      <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Playlist</a></li>
+                    </ul>
+                </div>
+            </li>
+        </div>
+    </div>
+    <!-- SEARCH RESULTS ENDS HERE -->
+
     <div class="container-fluid" style="padding: 70px 0 100px 0; margin: 0px; ">
         <div class="col-lg-2 thumbs" style="background-color: #eee; overflow-y: scroll; padding: 9px 0; box-shadow: inset 0 0 23px rgba(0,0,0,0.5)"><!--important-->
             <div id="clearQueue">
@@ -46,24 +66,24 @@
             </div>
             <div class="list-group">
                 <li class="list-group-item active"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item
-                    <i class="fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>
                     <div class="dropdown" style="float: right; top: 2px;">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px">
+                        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><img src="add.png" width="26px">
                         </button>
-                        <ul class="dropdown-menu" style="position: absolute; left: -170px;">
+                        <ul class="dropdown-menu" style="position: absolute; left: -207px;">
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>
                           <li><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>
-                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i> <button type="button" name="button" class="call_modal" onclick="viewModal()" >Add to Playlist</button></a></li>
+                          <li><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal" onclick="viewModal()" >Add to Playlist</button></a></li>
                           <li class="divider"></li>
                           <li><a href="#">Info, Artist, and more...</a></li>
                         </ul>
                     </div>
+                    <i class="fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px; left: -10px;"></i>
                 </li>
                 <li class="list-group-item"><img src="Divide_cover.png" style="width: 40px; display: inline; margin-right: 10px;">First item
-                    <i class="fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i>
+                    <!-- <i class="fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px;"></i> -->
                     <div class="dropdown" style="float: right; top: 2px;">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="add.png" width="26px">
+                        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><img src="add.png" width="26px">
                         </button>
                         <ul class="dropdown-menu" style="position: absolute; left: -170px;">
                           <li><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>
@@ -119,7 +139,7 @@
     <div class="mymodal_main" style="display:none"></div>
 
     <!-- FOOTER BEGINS THROUGH NAVBAR -->
-    <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 100px;  background: linear-gradient(to bottom left, #13547a  0%, #80d0c7 100%);">
+    <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 100px;  background: linear-gradient(to bottom left, #13547a  0%, #80d0c7 100%); z-index: 10000000;">
         <img id="img-wrapper" src="sample-img.jpg">
         <div class="title">
             <div class="song-name">
@@ -188,7 +208,7 @@
             $('.mymodal_main').toggle();
         }
     </script>
-    <!-- <script type="text/javascript" src="main.js"></script> -->
+    <script type="text/javascript" src="main.js"></script>
 
 </body>
 </html>

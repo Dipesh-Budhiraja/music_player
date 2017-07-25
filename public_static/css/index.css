@@ -762,3 +762,16 @@ box-shadow: none;
 }
 
 /*Extra styling ends*/
+
+/*Queue dropdown styling*/
+.dropdown-button {
+    background-color: transparent;
+    border: none;
+}
+
+.call_modal {
+    background-color: transparent;
+    border: none;
+    padding-right: 130px;
+    outline: none;
+}
