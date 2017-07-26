@@ -27,14 +27,15 @@
         </div>
     </nav>
     <!-- NAVBAR ENDS -->
-
     <div id="box1">
         <h1>Welcome Search Your Music</h1>
-        <form action="#" method="get" class="navbar-form">
+        <form action="/main.html" method="get" class="navbar-form">
             <div class="form-group">
-                <input type="text" class="form-control" id="searchQuery" placeholder="Search" style="font-size: 20px; width: 500px;">
+                <input type="text" name="song" class="form-control" id="searchQuery" placeholder="Search" style="font-size: 20px; width: 500px;">
             </div>
-            <a href="http://localhost:5000/main.html" class ="btn btn-default" id="searchButton" style="margin-left: -63px; border: none; border-radius: 20px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 20px;"></i></a>
+            <!-- <a href="http://localhost:5000/main.html" class ="btn btn-default" id="searchButton" style="margin-left: -63px; border: none; border-radius: 20px;"><i class="fa fa-search" aria-hidden="true" style="font-size: 20px;"></i></a> -->
+            <input type="submit" value=&#9906; style="transform: rotate(-45deg); color: black; background-color: transparent; border: none; position: relative; left: -60px; top: 2px; font-size: 30px; outline: none;">
+
         </form>
         <div style="position: relative; top: 45vh; margin: 0 auto; display: block; text-align: center; cursor: pointer;">
             <a href="http://localhost:5000/main.html" class="btn btn-default" style="width: 250px; height: 38px; font-size: 18px;">Go to Music Player</a>
