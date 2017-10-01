@@ -242,8 +242,9 @@ function generateQueue(){
 
                 +'<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
                 '<li onclick="addtoPlaylistHelper('+data.song_id+')"><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal">Add to Playlist</button></a></li>'+
-                '<li class="divider"></li>'+
-                // '<li><a href="#">Info, Artist, and more...</a></li>'+'</ul></div>'+
+                // '<li class="divider"></li>'+
+                // '<li><a href="#">Info, Artist, and more...</a></li>'+
+                '</ul></div>'+
                 '<i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px; left: -3px;"></i></li>')
             }
             else{
@@ -254,8 +255,9 @@ function generateQueue(){
                 '<ul class="dropdown-menu" style="position: absolute; left: -230px;">'+(parseInt(data.fav)<=0?'<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: lightgray;"></i> Add to Favourites</a></li>':'<li onclick=toggleFavourite("'+data.song_id+'",this)><a href="#"><i class="fa fa-heart" aria-hidden="true" style="color: #E91E63;"></i> Added to Favourites &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: gray">Remove</span></a></li>')+
                 '<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
                 '<li onclick="addtoPlaylistHelper('+data.song_id+')"s><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal" >Add to Playlist</button></a></li>'+
-                '<li class="divider"></li>'+
-                // '<li><a href="#">Info, Artist, and more...</a></li>'+'</ul></div>'+
+                // '<li class="divider"></li>'+
+                // '<li><a href="#">Info, Artist, and more...</a></li>'+
+                '</ul></div>'+
                 '<i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px; left: -3px;"></i></li>')
 
             }
