@@ -242,9 +242,11 @@ function generateQueue(){
 
                 +'<li onclick="removeFromQueue('+data.song_id+')"><a href="#"><i class="fa fa-times" aria-hidden="true" style="color: lightgray; font-size: 18px;"></i> Remove from Queue</button></a></li>'+
                 '<li onclick="addtoPlaylistHelper('+data.song_id+')"><a href="#"><i class="fa fa-list-ul" aria-hidden="true" style="color: lightgray"></i><button type="button" name="button" class="call_modal">Add to Playlist</button></a></li>'+
-                // '<li class="divider"></li>'+
-                // '<li><a href="#">Info, Artist, and more...</a></li>'+
-                '</ul></div>'+
+                ''+'</ul></div>'+
+
+                '<li class="divider"></li>'+
+                // '<li><a href="#">Info, Artist, and more...</a></li>'+'</ul></div>'+
+
                 '<i class="playingicon fa fa-volume-up" aria-hidden="true" style="margin-left: 5px; font-size: 26px; float: right; position: relative; top: 8px; left: -3px;"></i></li>')
             }
             else{
@@ -448,7 +450,7 @@ function search(e) {
         }
         if(data.length==0){
             // console.log(true);
-            showme.html('//todo search not found');
+            showme.html('<h2 style="text-align: center;">Search Not Found</h2>');
         }
     })
 }
