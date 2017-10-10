@@ -6,6 +6,8 @@ dbconfig={
     password:'YymAbz5TYs',
     database:'sql12198734'
 }
+// sql12.freemysqlhosting.net
+
 
 // dbconfig={
 //     host:'localhost',
