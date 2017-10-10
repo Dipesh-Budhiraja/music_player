@@ -3,7 +3,7 @@ const app=express();
 const sql = require('./sql.js');
 const fileUpload=require('express-fileupload');
 const bodyParser=require('body-parser');
-const port=5000||process.env.port;
+const port=process.env.PORT||5000;
 var uploadID=0;
 const mongodb=require('./mongodb.js');
 app.use('/',bodyParser.json());
