@@ -1,11 +1,18 @@
 const mysql = require('mysql');
 
 dbconfig={
-    host:'localhost',
-    user:'newuser',
-    password:'password',
-    database:'music'
+    host:'sql12.freemysqlhosting.net',
+    user:'sql12198734',
+    password:'YymAbz5TYs',
+    database:'sql12198734'
 }
+
+// dbconfig={
+//     host:'localhost',
+//     user:'newuser',
+//     password:'password',
+//     database:'music'
+// }
 
 function sqlQuery(query,callback) {
     var connection=mysql.createConnection(dbconfig);
