@@ -8,6 +8,13 @@ dbconfig={
 }
 // sql12.freemysqlhosting.net
 
+// 
+// dbconfig={
+//     host:'localhost',
+//     user:'newuser',
+//     password:'password',
+//     database:'music'
+// }
 
 function sqlQuery(query,callback) {
     var connection=mysql.createConnection(dbconfig);
