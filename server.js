@@ -81,7 +81,7 @@ app.post('/upload', function(req, res) {
 });
 
 app.post('/upload/form',function (req,res) {
-    var query='INSERT INTO songs (name,artist,genre,img_src) values ("'+convert_case(req.body.name)+'","'+convert_case(req.body.artist)+'","'+convert_case(req.body.genre)+'","'+req.body.img_src+'")';
+    var query='INSERT INTO songs (name,artist,genre,img_src,fav) values ("'+convert_case(req.body.name)+'","'+convert_case(req.body.artist)+'","'+convert_case(req.body.genre)+'","'+req.body.img_src+'",0)';
     sql.sqlQuery(query,function(data){
         res.send(req.body.name);
         // console.log(data);
