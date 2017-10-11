@@ -9,26 +9,28 @@ function connectToMongo(run_server){
         obj=db;
         run_server();
         // db.close();
-    })
+    });
 }
 
 function insertToMongo(item,callback) {
     obj.collection('users').insertOne(item,function (err,result) {
         if(err) throw err;
         callback(result);
-    })
+    });
 }
+
 function getList(query,callback) {
     obj.collection('users').findOne(query,function (err,result) {
         if(err) throw err;
         callback(result);
     });
 }
+
 function updateItem(query,newItem,callback) {
     obj.collection('users').updateOne(query,newItem,function (err,result) {
         if (err) throw err;
         callback(result);
-    })
+    });
 }
 module.exports = {
     connectToMongo,

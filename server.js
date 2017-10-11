@@ -101,11 +101,11 @@ app.post('/user/update',function (req,res) {
     mongodb.updateItem({'user':req.body.data.user},{$set:{playlists:req.body.data.playlists}},function (data) {
         // console.log(data);
         res.send(data);
-    })
-})
+    });
+});
 
 mongodb.connectToMongo(function () {
     app.listen(port,function(){
         console.log("listening on"+port);
     });
-})
+});
